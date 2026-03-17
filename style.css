@@ -1,0 +1,201 @@
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+/* BASE */
+body{
+font-family:'Inter', sans-serif;
+background:#F6E5D2;
+color:#111;
+}
+
+/* HERO */
+.hero{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:100px 10%;
+background:#2F5A4E;
+color:white;
+position:relative;
+overflow:hidden;
+}
+
+.hero-text{
+max-width:500px;
+}
+
+.hero h1{
+font-family:'Dancing Script', cursive;
+font-size:80px;
+}
+
+.hero p{
+margin:20px 0;
+font-size:20px;
+}
+
+.btn{
+display:inline-block;
+padding:14px 28px;
+background:#F37C6D;
+color:white;
+border-radius:30px;
+text-decoration:none;
+transition:0.3s;
+}
+
+.btn:hover{
+transform:translateY(-5px);
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* IMAGE */
+.hero-image img{
+width:350px;
+border-radius:20px;
+box-shadow:0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* WAVE */
+.wave{
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+height:120px;
+background:#F6E5D2;
+clip-path: polygon(0 60%, 10% 70%, 20% 65%, 30% 75%, 40% 60%, 50% 80%, 60% 65%, 70% 75%, 80% 60%, 90% 70%, 100% 60%, 100% 100%, 0 100%);
+}
+
+/* CONCEPT */
+.concept{
+padding:100px 20%;
+text-align:center;
+}
+
+.concept h2{
+font-family:'Playfair Display', serif;
+font-size:36px;
+margin-bottom:20px;
+}
+
+/* CONTENT */
+.content{
+padding:80px 10%;
+text-align:center;
+}
+
+.grid{
+display:flex;
+gap:40px;
+justify-content:center;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+/* PROCESS */
+.process{
+padding:100px 10%;
+background:white;
+}
+
+.steps{
+display:flex;
+gap:30px;
+}
+
+.step{
+flex:1;
+padding:20px;
+border-left:4px solid #F37C6D;
+}
+
+.step h3{
+font-size:40px;
+color:#F37C6D;
+}
+
+/* SHOWCASE */
+.showcase-full{
+height:80vh;
+background:url('images/burger fini.jpeg') center/cover no-repeat;
+position:relative;
+}
+
+.overlay{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%, -50%);
+color:white;
+}
+
+.overlay h2{
+font-size:50px;
+font-family:'Playfair Display', serif;
+}
+
+/* FOOTER */
+footer{
+text-align:center;
+padding:30px;
+color:#666;
+}
+
+/* ANIMATIONS */
+.fade-up{
+opacity:0;
+transform:translateY(40px);
+transition:0.8s;
+}
+
+.fade-in{
+opacity:0;
+transition:1s;
+}
+
+.show{
+opacity:1;
+transform:none;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+.hero{
+flex-direction:column;
+text-align:center;
+}
+
+.hero h1{
+font-size:50px;
+}
+
+.hero-image img{
+margin-top:30px;
+width:80%;
+}
+
+.grid{
+flex-direction:column;
+}
+
+.steps{
+flex-direction:column;
+}
+
+}
