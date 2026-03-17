@@ -1,4 +1,5 @@
 /* RESET */
+
 *{
 margin:0;
 padding:0;
@@ -6,6 +7,7 @@ box-sizing:border-box;
 }
 
 /* BASE */
+
 body{
 font-family:'Inter', sans-serif;
 background:#F6E5D2;
@@ -13,6 +15,7 @@ color:#111;
 }
 
 /* HERO */
+
 .hero{
 display:flex;
 align-items:center;
@@ -24,8 +27,11 @@ position:relative;
 overflow:hidden;
 }
 
+/* TEXT */
+
 .hero-text{
 max-width:500px;
+animation:fadeUp 1s ease;
 }
 
 .hero h1{
@@ -36,7 +42,10 @@ font-size:80px;
 .hero p{
 margin:20px 0;
 font-size:20px;
+opacity:0.9;
 }
+
+/* BUTTON */
 
 .btn{
 display:inline-block;
@@ -54,13 +63,16 @@ box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
 /* IMAGE */
+
 .hero-image img{
 width:350px;
 border-radius:20px;
 box-shadow:0 20px 40px rgba(0,0,0,0.3);
+animation:fadeIn 1.5s ease;
 }
 
-/* WAVE */
+/* WAVE (effet déchiré) */
+
 .wave{
 position:absolute;
 bottom:0;
@@ -71,31 +83,29 @@ background:#F6E5D2;
 clip-path: polygon(0 60%, 10% 70%, 20% 65%, 30% 75%, 40% 60%, 50% 80%, 60% 65%, 70% 75%, 80% 60%, 90% 70%, 100% 60%, 100% 100%, 0 100%);
 }
 
-/* CONCEPT */
-.concept{
-padding:100px 20%;
-text-align:center;
-}
-
-.concept h2{
-font-family:'Playfair Display', serif;
-font-size:36px;
-margin-bottom:20px;
-}
-
 /* CONTENT */
+
 .content{
 padding:80px 10%;
 text-align:center;
 }
 
-.grid{
-display:flex;
-gap:40px;
-justify-content:center;
+.content h2{
+font-family:'Playfair Display', serif;
+font-size:40px;
+margin-bottom:40px;
 }
 
-.card{
+/* GRID */
+
+.grid{
+display:flex;
+gap:50px;
+justify-content:center;
+text-align:left;
+}
+
+.grid div{
 background:white;
 padding:30px;
 border-radius:15px;
@@ -103,53 +113,25 @@ box-shadow:0 10px 30px rgba(0,0,0,0.1);
 transition:0.3s;
 }
 
-.card:hover{
+.grid div:hover{
 transform:translateY(-10px);
 }
 
-/* PROCESS */
-.process{
-padding:100px 10%;
-background:white;
-}
-
-.steps{
-display:flex;
-gap:30px;
-}
-
-.step{
-flex:1;
-padding:20px;
-border-left:4px solid #F37C6D;
-}
-
-.step h3{
-font-size:40px;
-color:#F37C6D;
-}
-
 /* SHOWCASE */
-.showcase-full{
-height:80vh;
-background:url('images/burger fini.jpeg') center/cover no-repeat;
-position:relative;
+
+.showcase{
+padding:80px 10%;
+text-align:center;
 }
 
-.overlay{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%, -50%);
-color:white;
-}
-
-.overlay h2{
-font-size:50px;
-font-family:'Playfair Display', serif;
+.showcase img{
+width:60%;
+border-radius:20px;
+box-shadow:0 20px 40px rgba(0,0,0,0.2);
 }
 
 /* FOOTER */
+
 footer{
 text-align:center;
 padding:30px;
@@ -157,23 +139,25 @@ color:#666;
 }
 
 /* ANIMATIONS */
-.fade-up{
-opacity:0;
-transform:translateY(40px);
-transition:0.8s;
-}
 
-.fade-in{
+@keyframes fadeUp{
+from{
 opacity:0;
-transition:1s;
+transform:translateY(50px);
 }
-
-.show{
+to{
 opacity:1;
-transform:none;
+transform:translateY(0);
+}
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
 }
 
 /* RESPONSIVE */
+
 @media(max-width:900px){
 
 .hero{
@@ -194,8 +178,8 @@ width:80%;
 flex-direction:column;
 }
 
-.steps{
-flex-direction:column;
+.showcase img{
+width:100%;
 }
 
 }
