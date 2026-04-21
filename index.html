@@ -1,95 +1,1203 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elif Ulutürk — Portfolio</title>
 
-<title>HCW Recipes</title>
+  <style>
+    :root {
+      --bg: #f3f0ea;
+      --panel: #fbfaf7;
+      --text: #111111;
+      --muted: #6e6a64;
+      --line: #ddd6cd;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      --radius: 24px;
+      --max: 1320px;
+    }
 
-<link rel="stylesheet" href="style.css">
+    * {
+      box-sizing: border-box;
+    }
 
-<!-- FONTS -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    html {
+      scroll-behavior: smooth;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@600;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
 
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(243, 240, 234, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 0.95rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 74px 0 42px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.77rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(3rem, 6vw, 6.7rem);
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+      font-weight: 700;
+    }
+
+    .hero-copy p {
+      margin: 18px 0 0;
+      max-width: 56ch;
+      color: var(--muted);
+      font-size: 1.03rem;
+    }
+
+    .hero-visual {
+      min-height: 540px;
+      border-radius: 28px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, #e4ddd3, #d7cdbf 50%, #c5bbac 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-visual::before,
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      border: 2px solid rgba(255,255,255,0.7);
+      pointer-events: none;
+    }
+
+    .hero-visual::before {
+      inset: 12% 18% 30% 14%;
+      transform: skewY(-12deg);
+    }
+
+    .hero-visual::after {
+      inset: 42% 10% 10% 34%;
+      transform: skewX(-24deg);
+    }
+
+    .section {
+      padding: 30px 0 22px;
+    }
+
+    .section-head {
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
+      letter-spacing: -0.04em;
+    }
+
+    .section-note {
+      color: var(--muted);
+      max-width: 42ch;
+      font-size: 0.95rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .case-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .case-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .case-top {
+      display: grid;
+      gap: 0;
+    }
+
+    .case-axo {
+      aspect-ratio: 4 / 3;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, #f8f7f4 0%, #ece8e0 100%);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .case-body {
+      padding: 18px 18px 20px;
+    }
+
+    .case-number {
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .case-title {
+      margin: 0 0 6px;
+      font-size: 1.24rem;
+      line-height: 1.15;
+    }
+
+    .case-meta {
+      color: var(--muted);
+      font-size: 0.93rem;
+      margin-bottom: 10px;
+    }
+
+    .case-desc {
+      margin: 0 0 16px;
+      color: #383838;
+      font-size: 0.96rem;
+    }
+
+    .btn {
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 18px;
+      border-radius: 999px;
+      background: var(--text);
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: .92;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .about-photo,
+    .about-card,
+    .contact-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .about-photo {
+      min-height: 430px;
+      background: linear-gradient(160deg, #e1d9cc 0%, #d2c5b2 100%);
+      position: relative;
+    }
+
+    .about-photo::before {
+      content: "";
+      position: absolute;
+      inset: 18% 20% 10% 20%;
+      border-radius: 200px 200px 40px 40px;
+      background: rgba(255,255,255,0.38);
+    }
+
+    .about-card,
+    .contact-card {
+      padding: 24px;
+    }
+
+    .about-card p,
+    .contact-card p {
+      color: #3d3d3d;
+      margin-top: 0;
+    }
+
+    .stats {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .stat {
+      padding: 16px;
+      background: #f3eee6;
+      border-radius: 18px;
+      border: 1px solid #e6dccd;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.35rem;
+      margin-bottom: 4px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 22px;
+    }
+
+    .contact-list {
+      margin-top: 18px;
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    label {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    input,
+    textarea {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 16px;
+      padding: 14px 15px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .site-footer {
+      padding: 36px 0 56px;
+    }
+
+    .footer-row {
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,10,0.48);
+      display: none;
+      align-items: stretch;
+      justify-content: center;
+      z-index: 100;
+      padding: 18px;
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-panel {
+      width: min(100%, 1320px);
+      background: var(--panel);
+      border-radius: 28px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.18);
+      max-height: calc(100vh - 36px);
+    }
+
+    .modal-sidebar {
+      padding: 28px;
+      border-right: 1px solid var(--line);
+      overflow: auto;
+      background: #f8f5ef;
+    }
+
+    .modal-main {
+      padding: 24px;
+      overflow: auto;
+    }
+
+    .close-btn {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    .modal-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: start;
+      margin-bottom: 18px;
+    }
+
+    .modal-number {
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .modal-title {
+      margin: 0;
+      font-size: 2rem;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .modal-location {
+      color: var(--muted);
+      margin-top: 8px;
+      font-size: 0.96rem;
+    }
+
+    .modal-text {
+      color: #383838;
+      font-size: 0.97rem;
+      margin-top: 18px;
+    }
+
+    .detail-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .detail-section {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+    }
+
+    .detail-section h4 {
+      margin: 0 0 14px;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .sheet-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .sheet-grid.single {
+      grid-template-columns: 1fr;
+    }
+
+    .sheet,
+    .sheet-wide {
+      background: #f7f5f0;
+      border: 1px solid #e6e0d7;
+      border-radius: 18px;
+      position: relative;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      cursor: zoom-in;
+    }
+
+    .sheet {
+      min-height: 260px;
+    }
+
+    .sheet-wide {
+      min-height: 300px;
+    }
+
+    .sheet-wide.tall {
+      min-height: 680px;
+    }
+
+    .sheet::before,
+    .sheet-wide::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 14px;
+      bottom: 12px;
+      font-size: 0.76rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      z-index: 3;
+      background: rgba(255,255,255,0.78);
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 10, 10, 0.94);
+      display: none;
+      z-index: 300;
+    }
+
+    .lightbox.open {
+      display: block;
+    }
+
+    .lightbox-toolbar {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      z-index: 5;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .lightbox-btn {
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.1);
+      color: white;
+      height: 42px;
+      min-width: 42px;
+      padding: 0 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+    }
+
+    .lightbox-btn:hover {
+      background: rgba(255,255,255,0.18);
+    }
+
+    .lightbox-stage {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      cursor: grab;
+    }
+
+    .lightbox-stage.dragging {
+      cursor: grabbing;
+    }
+
+    #lightboxImage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      max-width: none;
+      max-height: none;
+      transform-origin: center center;
+      will-change: transform;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+    }
+
+    @media (max-width: 1120px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .sheet-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 0;
+      }
+
+      .hero-visual {
+        min-height: 360px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .lightbox-toolbar {
+        top: 12px;
+        right: 12px;
+        left: 12px;
+      }
+
+      .lightbox-btn {
+        flex: 1;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home">Elif Ulutürk</a>
+      <nav class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-<!-- HERO -->
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Architecture Portfolio / 2026</div>
+          <h1>Three projects, one calm and minimal narrative.</h1>
+          <p>
+            This portfolio is conceived as a quiet editorial website: each project opens through
+            an axonometric image, then unfolds into maps, diagrams, plans, sections, perspectives,
+            photographs and models.
+          </p>
+        </div>
+        <div class="hero-visual" aria-hidden="true"></div>
+      </div>
+    </section>
 
-<section class="hero">
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Selected Case Studies</h2>
+          <div class="section-note">
+            Each card opens a detailed project view with large images, full screen mode and zoom.
+          </div>
+        </div>
 
-<div class="hero-text">
-<h1>HCW Recipes</h1>
-<p>Homemade Kapalı Hamburger 🍔</p>
+        <div class="projects-grid">
+          <article class="case-card">
+            <div class="case-top">
+              <div class="case-axo" style="background-image: url('images/mihrabli-axono.jpg');"></div>
+            </div>
+            <div class="case-body">
+              <div class="case-number">Case 01</div>
+              <h3 class="case-title">Centre Culturel Mihrablı</h3>
+              <div class="case-meta">Beyoğlu, Istanbul / Cultural Center</div>
+              <p class="case-desc">
+                Public cultural project developed through maps, plans, sections, collage, models and axonometric studies.
+              </p>
+              <button class="btn open-project" data-project="mihrabli">Open Project</button>
+            </div>
+          </article>
 
-<a href="#recipe" class="btn">View Recipe</a>
-</div>
+          <article class="case-card">
+            <div class="case-top">
+              <div class="case-axo" style="background-image: url('images/projet2-axono.jpg');"></div>
+            </div>
+            <div class="case-body">
+              <div class="case-number">Case 02</div>
+              <h3 class="case-title">Trames Fertiles en Transition</h3>
+              <div class="case-meta">Morlanwelz-Binche, Wallonie / Agricultural Landscape</div>
+              <p class="case-desc">
+                Territorial and architectural project structured through maps, schemas, plans, coupes, photos and perspectives.
+              </p>
+              <button class="btn open-project" data-project="trames">Open Project</button>
+            </div>
+          </article>
 
-<div class="hero-image">
-<img src="images/burger fini.jpeg" alt="burger">
-</div>
+          <article class="case-card">
+            <div class="case-top">
+              <div class="case-axo" style="background: linear-gradient(135deg, #ece7df, #ddd2c4);"></div>
+            </div>
+            <div class="case-body">
+              <div class="case-number">Case 03</div>
+              <h3 class="case-title">Project 03</h3>
+              <div class="case-meta">Coming soon</div>
+              <p class="case-desc">
+                Coming soon.
+              </p>
+              <button class="btn open-project" data-project="vercors">Open Project</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<!-- effet déchiré -->
-<div class="wave"></div>
+    <section id="about" class="section">
+      <div class="container about">
+        <div class="about-photo" aria-hidden="true"></div>
+        <div class="about-card">
+          <h2 class="section-title">About</h2>
+          <p>
+            Je me présente, Elif Ulutürk, et je vous adresse cette lettre accompagnée de mon portfolio afin de vous faire part de mon intérêt pour un stage au sein de votre agence, dans le cadre de mon cursus en architecture.
+          </p>
+          <p>
+            Je suis actuellement étudiante en Master en architecture à l’Université libre de Bruxelles (ULB), où j’ai obtenu mon diplôme de Bachelier en 2025. Dans le cadre de mes études, je poursuis actuellement un échange à l’Université Mimar Sinan des Beaux-Arts à Istanbul, une expérience qui enrichit ma compréhension de l’architecture à travers un contexte culturel et urbain différent.
+          </p>
+          <p>
+            Mon parcours m’a permis de développer une approche attentive à la fois à la conception et à sa mise en œuvre. À travers différents projets académiques, j’ai exploré le travail à plusieurs échelles, en portant une attention particulière à la cohérence entre intention architecturale, logique constructive et précision technique.
+          </p>
+          <p>
+            Le suivi de chantiers a également été une étape importante dans mon apprentissage, me permettant de mieux saisir les enjeux liés à la réalisation et à la coordination des différents acteurs du projet.
+          </p>
+          <p>
+            Ce stage représente pour moi une opportunité de m’impliquer dans une pratique professionnelle, de mieux comprendre les dynamiques de travail en agence et de continuer à développer mes compétences dans un cadre concret.
+          </p>
 
-</section>
+          <div class="stats">
+           
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <section id="contact" class="section">
+      <div class="container contact-grid">
+        <div class="contact-card">
+          <h2 class="section-title">Contact</h2>
+          <p>For internships, collaborations or portfolio reviews, feel free to reach out.</p>
+          <div class="contact-list">
+            <div>Email — elif@example.com</div>
+            <div>Instagram — @elifuluturk</div>
+            <div>Location — Istanbul / Brussels</div>
+          </div>
+        </div>
 
-<!-- CONTENT -->
+        <div class="contact-card">
+          <form>
+            <div class="field">
+              <label for="fullname">Full Name</label>
+              <input id="fullname" type="text" placeholder="Your name">
+            </div>
 
-<section id="recipe" class="content">
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="your@email.com">
+            </div>
 
-<h2>Kapalı Hamburger</h2>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="Write your message"></textarea>
+            </div>
 
-<div class="grid">
+            <button class="btn" type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<div>
-<h3>🥖 Bread Ingredients</h3>
-<ul>
-<li>Warm water</li>
-<li>Milk</li>
-<li>Yogurt</li>
-<li>Oil</li>
-<li>Yeast</li>
-<li>Flour</li>
-</ul>
-</div>
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <span>© 2026 Elif Ulutürk</span>
+      <span>Architecture Portfolio</span>
+    </div>
+  </footer>
 
-<div>
-<h3>🍖 Meat Ingredients</h3>
-<ul>
-<li>Minced beef</li>
-<li>Onion</li>
-<li>Mustard</li>
-<li>Salt & pepper</li>
-</ul>
-</div>
+  <div class="modal" id="projectModal" aria-hidden="true">
+    <div class="modal-panel">
+      <aside class="modal-sidebar">
+        <div class="modal-top">
+          <div>
+            <div class="modal-number" id="modalNumber"></div>
+            <h3 class="modal-title" id="modalTitle"></h3>
+            <div class="modal-location" id="modalLocation"></div>
+          </div>
+          <button class="close-btn" id="closeModal" aria-label="Close">✕</button>
+        </div>
+        <div class="modal-text" id="modalText"></div>
+      </aside>
 
-</div>
+      <section class="modal-main">
+        <div class="detail-grid" id="modalDetails"></div>
+      </section>
+    </div>
+  </div>
 
-</section>
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-toolbar">
+      <button class="lightbox-btn" id="zoomOutBtn" type="button">−</button>
+      <button class="lightbox-btn" id="zoomInBtn" type="button">+</button>
+      <button class="lightbox-btn" id="resetZoomBtn" type="button">Reset</button>
+      <button class="lightbox-btn" id="closeLightbox" type="button">✕</button>
+    </div>
 
+    <div class="lightbox-stage" id="lightboxStage">
+      <img id="lightboxImage" src="" alt="">
+    </div>
+  </div>
 
-<!-- IMAGE SECTION -->
+  <script>
+    const projects = {
+      mihrabli: {
+        number: 'Case 01',
+        title: 'Centre Culturel Mihrablı',
+        location: 'Beyoğlu, Istanbul, Türkiye',
+        text: 'A cultural center project developed in an urban context in Istanbul. The proposal combines public space, exhibition, learning and production areas, while creating a strong relationship with the site through maps, plans, sections, collage, perspectives and physical models.',
+        sections: [
+          {
+            title: 'Carte',
+            layout: 'single',
+            items: [
+              ['Carte territoriale', 'sheet-wide', 'images/mihrabli-carte.jpg']
+            ]
+          },
+          {
+            title: 'Axonométrie',
+            layout: 'single',
+            items: [
+              ['Axonométrie', 'sheet-wide', 'images/mihrabli-axono.jpg']
+            ]
+          },
+          {
+            title: 'Plans',
+            layout: 'double',
+            items: [
+              ['Plan RDC', 'sheet-wide tall', 'images/mihrabli-rdc.jpg'],
+              ['Plans étages', 'sheet-wide tall', 'images/mihrabli-etages.jpg']
+            ]
+          },
+          {
+            title: 'Plan toiture + coupe',
+            layout: 'single',
+            items: [
+              ['Plan toiture + coupe', 'sheet-wide', 'images/mihrabli-toiture-coupe.jpg']
+            ]
+          },
+          {
+            title: 'Coupes',
+            layout: 'single',
+            items: [
+              ['Coupes', 'sheet-wide', 'images/mihrabli-coupes.jpg']
+            ]
+          },
+          {
+            title: 'Perspectives / vues',
+            layout: 'double',
+            items: [
+              ['Collage intérieur', 'sheet', 'images/mihrabli-collage.jpg'],
+              ['Vue extérieure', 'sheet', 'images/mihrabli-vue-ext.jpg']
+            ]
+          },
+          {
+            title: 'Maquettes',
+            layout: 'double',
+            items: [
+              ['Maquette 01', 'sheet', 'images/mihrabli-maquette-1.jpg'],
+              ['Maquette 02', 'sheet', 'images/mihrabli-maquette-2.jpg']
+            ]
+          },
+          {
+            title: 'Image complémentaire',
+            layout: 'single',
+            items: [
+              ['Image complémentaire', 'sheet-wide', 'images/mihrabli-extra.jpg']
+            ]
+          }
+        ]
+      },
 
-<section class="showcase">
+      trames: {
+        number: 'Case 02',
+        title: 'Trames Fertiles en Transition',
+        location: 'Morlanwelz-Binche, Wallonie, Belgique',
+        text: 'A peri-urban agricultural park project focused on preserving cultivable land while introducing public use, awareness and landscape continuity. The project is organised as a system of vertical and horizontal bands linked by a continuous promenade.',
+        sections: [
+          {
+            title: 'Carte',
+            layout: 'single',
+            items: [
+              ['Carte d’analyse territoriale', 'sheet-wide', 'images/projet2-carte.jpg']
+            ]
+          },
+          {
+            title: 'Schémas',
+            layout: 'single',
+            items: [
+              ['Schémas d’organisation', 'sheet-wide', 'images/projet2-schema.jpg']
+            ]
+          },
+          {
+            title: 'Plans',
+            layout: 'double',
+            items: [
+              ['Plan RDC 1/200', 'sheet-wide tall', 'images/projet2-plan-rdc.jpg'],
+              ['Plan R+1 1/200', 'sheet-wide tall', 'images/projet2-plan-r1.jpg']
+            ]
+          },
+          {
+            title: 'Coupes',
+            layout: 'single',
+            items: [
+              ['Coupes + élévation', 'sheet-wide', 'images/projet2-coupes.jpg']
+            ]
+          },
+          {
+            title: 'Photos',
+            layout: 'single',
+            items: [
+              ['Photos de site', 'sheet-wide', 'images/projet2-photos.jpg']
+            ]
+          },
+          {
+            title: 'Dessins',
+            layout: 'single',
+            items: [
+              ['Perspectives', 'sheet-wide', 'images/projet2-perspectives.jpg']
+            ]
+          }
+        ]
+      },
 
-<h2>Final Result</h2>
+      vercors: {
+        number: 'Case 03',
+        title: 'Project 03',
+        location: 'To be added',
+        text: 'This section is ready for your third project.',
+        sections: [
+          {
+            title: 'Coming soon',
+            layout: 'single',
+            items: [
+              ['Project image', 'sheet-wide', 'images/projet2-axono.jpg']
+            ]
+          }
+        ]
+      }
+    };
 
-<img src="images/burger fini.jpeg" alt="burger">
+    const modal = document.getElementById('projectModal');
+    const modalNumber = document.getElementById('modalNumber');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalLocation = document.getElementById('modalLocation');
+    const modalText = document.getElementById('modalText');
+    const modalDetails = document.getElementById('modalDetails');
+    const closeModal = document.getElementById('closeModal');
 
-</section>
+    function buildSection(section) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'detail-section';
 
+      const title = document.createElement('h4');
+      title.textContent = section.title;
+      wrapper.appendChild(title);
 
-<!-- FOOTER -->
+      const grid = document.createElement('div');
+      grid.className = section.layout === 'single' ? 'sheet-grid single' : 'sheet-grid';
 
-<footer>
-© 2026 HCW Recipes
-</footer>
+      section.items.forEach(([label, cls, imageSrc]) => {
+        const card = document.createElement('div');
+        card.className = cls;
+        card.setAttribute('data-label', label);
+        card.setAttribute('data-full', imageSrc);
+        card.style.backgroundImage = `url('${imageSrc}')`;
 
+        card.addEventListener('click', () => {
+          openLightbox(imageSrc, label);
+        });
+
+        grid.appendChild(card);
+      });
+
+      wrapper.appendChild(grid);
+      return wrapper;
+    }
+
+    function openProject(key) {
+      const project = projects[key];
+      if (!project) return;
+
+      modalNumber.textContent = project.number;
+      modalTitle.textContent = project.title;
+      modalLocation.textContent = project.location;
+      modalText.textContent = project.text;
+      modalDetails.innerHTML = '';
+
+      project.sections.forEach(section => {
+        modalDetails.appendChild(buildSection(section));
+      });
+
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProject() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.open-project').forEach(btn => {
+      btn.addEventListener('click', () => openProject(btn.dataset.project));
+    });
+
+    closeModal.addEventListener('click', closeProject);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeProject();
+    });
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxStage = document.getElementById('lightboxStage');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const closeLightboxBtn = document.getElementById('closeLightbox');
+    const zoomInBtn = document.getElementById('zoomInBtn');
+    const zoomOutBtn = document.getElementById('zoomOutBtn');
+    const resetZoomBtn = document.getElementById('resetZoomBtn');
+
+    let scale = 1;
+    let minScale = 1;
+    let maxScale = 5;
+    let translateX = 0;
+    let translateY = 0;
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+    let imgLoaded = false;
+
+    function updateTransform() {
+      lightboxImage.style.transform =
+        `translate(-50%, -50%) translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    }
+
+    function fitImageToScreen() {
+      const vw = window.innerWidth * 0.9;
+      const vh = window.innerHeight * 0.9;
+
+      const naturalW = lightboxImage.naturalWidth || 1;
+      const naturalH = lightboxImage.naturalHeight || 1;
+
+      const ratio = Math.min(vw / naturalW, vh / naturalH);
+      minScale = ratio;
+      scale = ratio;
+      translateX = 0;
+      translateY = 0;
+
+      lightboxImage.style.width = `${naturalW}px`;
+      lightboxImage.style.height = `${naturalH}px`;
+
+      updateTransform();
+    }
+
+    function openLightbox(src, alt) {
+      lightboxImage.src = src;
+      lightboxImage.alt = alt || '';
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      imgLoaded = false;
+
+      lightboxImage.onload = () => {
+        imgLoaded = true;
+        fitImageToScreen();
+      };
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImage.src = '';
+      imgLoaded = false;
+    }
+
+    function zoomAt(factor) {
+      if (!imgLoaded) return;
+      scale = Math.max(minScale, Math.min(maxScale, scale * factor));
+      updateTransform();
+    }
+
+    function resetZoom() {
+      if (!imgLoaded) return;
+      fitImageToScreen();
+    }
+
+    zoomInBtn.addEventListener('click', () => zoomAt(1.2));
+    zoomOutBtn.addEventListener('click', () => zoomAt(1 / 1.2));
+    resetZoomBtn.addEventListener('click', resetZoom);
+    closeLightboxBtn.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    lightboxStage.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      if (!imgLoaded) return;
+
+      const delta = e.deltaY < 0 ? 1.12 : 1 / 1.12;
+      scale = Math.max(minScale, Math.min(maxScale, scale * delta));
+      updateTransform();
+    }, { passive: false });
+
+    lightboxStage.addEventListener('dblclick', () => {
+      if (!imgLoaded) return;
+
+      if (Math.abs(scale - minScale) < 0.01) {
+        scale = Math.min(minScale * 2, maxScale);
+      } else {
+        scale = minScale;
+        translateX = 0;
+        translateY = 0;
+      }
+      updateTransform();
+    });
+
+    lightboxStage.addEventListener('mousedown', (e) => {
+      if (!imgLoaded || scale <= minScale) return;
+      isDragging = true;
+      startX = e.clientX - translateX;
+      startY = e.clientY - translateY;
+      lightboxStage.classList.add('dragging');
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      translateX = e.clientX - startX;
+      translateY = e.clientY - startY;
+      updateTransform();
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+      lightboxStage.classList.remove('dragging');
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+        closeLightbox();
+      } else if (e.key === 'Escape' && modal.classList.contains('open')) {
+        closeProject();
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (lightbox.classList.contains('open') && imgLoaded) {
+        fitImageToScreen();
+      }
+    });
+  </script>
 </body>
 </html>
+
